@@ -7,11 +7,19 @@ MF="main.c"
 LIST="$(sed -n '/^#define/{s/^#define //p;}' $DF)"
 
 	for def in ${LIST}; do
+		# echo "def value is $def"
 			
 		set -- $(sed -n '/^#ifdef '$def'[ +|	+].*/,/^#endif/{s/.*\/\///p; /^{ /{ s/^{ "//; s/",.*$//p;}; }' $MF)
-		path=$1; shift
-		
-			for n in $@; do
-				echo "$path/$n"
-			done
+		# echo "the value is $(sed -n '/^#ifdef '$def'[ +|	+].*/,/^#endif/{s/.*\/\///p; /^{ /{ s/^{ "//; s/",.*$//p;}; }' $MF)"
+		path=$1; 
+		# echo "path is $path"
+		if [ $path ];
+		then
+			shift
+			# echo "args is  $@"
+
+				for n in $@; do
+					echo "$path/$n"
+				done
+		fi		
 	done
