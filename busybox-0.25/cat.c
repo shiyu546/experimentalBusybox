@@ -1,5 +1,6 @@
 #include "internal.h"
 #include <stdio.h>
+#include <unistd.h>
 
 const char	cat_usage[] = "cat [file ...]";
 
@@ -16,8 +17,11 @@ cat_fn(const struct FileInfo * i)
 			return 1;
 		}
 	}
-	while ( (c = getc(f)) != EOF )
+	while ( (c = getc(f)) != EOF ){
 		putc(c, stdout);
+		usleep(100000);
+		// fflush(stdout);
+	}
 	if ( i )
 		fclose(f);
 	fflush(stdout);
