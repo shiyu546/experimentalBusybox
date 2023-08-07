@@ -1,0 +1,8 @@
+bin/cat
+bin/chgrp
+bin/chmod
+bin/chown
+bin/cp
+bin/date
+bin/dd
+usr/bin/clear
